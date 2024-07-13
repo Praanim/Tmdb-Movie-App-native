@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.apicallexample.adapters.MovieAdapter;
@@ -33,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        movieAdapter = new MovieAdapter(new ArrayList<>());
-        recyclerView.setAdapter(movieAdapter);
+//        movieAdapter = new MovieAdapter(new ArrayList<>(),null);
+//        recyclerView.setAdapter(movieAdapter);
 
         //make api call
         fetchNowPlayingMovies();
@@ -55,8 +56,16 @@ public class MainActivity extends AppCompatActivity {
                     MovieResponse movieResponse = response.body();
                     if (movieResponse != null) {
                         List<MovieResponse.Movie> movieList = movieResponse.getMovies();
-                        // Handle the response data
-                        movieAdapter.setMovieResponse(movieList);
+                        movieAdapter = new MovieAdapter(movieList, new MovieAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(MovieResponse.Movie movie) {
+                                Intent intent = new Intent(MainActivity.this,MovieDetailActivity.class);
+                                intent.putExtra("MOVIE_ID",movie.getId());
+                                startActivity(intent);
+                            }
+                        });
+                        recyclerView.setAdapter(movieAdapter);
+
 
                     }else{
                         System.out.println("Request failed: " + response.body());

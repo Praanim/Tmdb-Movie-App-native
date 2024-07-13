@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,11 +20,24 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
+    // list of the movies from the api response
     private  List<MovieResponse.Movie> movieList ;
 
+    // on item click listener
+    private OnItemClickListener onItemClickListener;
+
+    public interface OnItemClickListener{
+
+        // on movie item click
+        void onItemClick(MovieResponse.Movie movie);
+    }
+
+
+
     // constructor
-    public MovieAdapter(List<MovieResponse.Movie> movieList){
+    public MovieAdapter(List<MovieResponse.Movie> movieList, OnItemClickListener onItemClickListener){
         this.movieList = movieList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     // set Movie Response
@@ -49,6 +63,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         Glide.with(holder.imageView.getContext())
                 .load(Uri.parse("https://image.tmdb.org/t/p/w500" + movie.getImagePath()))
                 .into(holder.imageView);
+
+        holder.itemView.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        //call back function which gets fired when the item gets called.
+                        onItemClickListener.onItemClick(movie);
+                    }
+                }
+        );
+
+
     }
 
     @Override
@@ -70,5 +97,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             description = itemView.findViewById(R.id.textView3);
             imageView = itemView.findViewById(R.id.imageView2);
         }
+
+
+
     }
 }
