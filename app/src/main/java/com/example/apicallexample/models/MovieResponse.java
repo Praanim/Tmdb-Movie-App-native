@@ -1,4 +1,4 @@
-package com.example.apicallexample;
+package com.example.apicallexample.models;
 
 
 import com.google.gson.annotations.SerializedName;

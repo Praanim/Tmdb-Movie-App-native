@@ -1,6 +1,6 @@
-package com.example.apicallexample;
+package com.example.apicallexample.network;
 
-import java.util.List;
+import com.example.apicallexample.models.MovieResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -1,4 +1,4 @@
-package com.example.apicallexample;
+package com.example.apicallexample.adapters;
 
 import android.annotation.SuppressLint;
 import android.net.Uri;
@@ -12,8 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.apicallexample.R;
+import com.example.apicallexample.models.MovieResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {

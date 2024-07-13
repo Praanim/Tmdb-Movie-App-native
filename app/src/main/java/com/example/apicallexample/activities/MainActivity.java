@@ -1,14 +1,16 @@
-package com.example.apicallexample;
+package com.example.apicallexample.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+
+import com.example.apicallexample.adapters.MovieAdapter;
+import com.example.apicallexample.R;
+import com.example.apicallexample.models.MovieResponse;
+import com.example.apicallexample.network.ApiClient;
+import com.example.apicallexample.network.ApiInterface;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +18,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 
 public class MainActivity extends AppCompatActivity {
 

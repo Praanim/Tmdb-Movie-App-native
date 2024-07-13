@@ -1,4 +1,4 @@
-package com.example.apicallexample;
+package com.example.apicallexample.network;
 
 import java.io.IOException;
 
