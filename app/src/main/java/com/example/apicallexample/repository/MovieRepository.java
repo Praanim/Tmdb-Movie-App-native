@@ -1,5 +1,6 @@
 package com.example.apicallexample.repository;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -28,7 +29,7 @@ public class MovieRepository {
         movieDetailScreenState.setValue(new ScreenState<MovieDetail>(ScreenState.Status.LOADING,null,null));
         apiService.getMovieDetails(movieId).enqueue(new Callback<MovieDetail>() {
             @Override
-            public void onResponse(Call<MovieDetail> call, Response<MovieDetail> response) {
+            public void onResponse(@NonNull Call<MovieDetail> call, @NonNull Response<MovieDetail> response) {
                 if(response.isSuccessful()){
                     // set the success state
                     movieDetailScreenState.setValue(new ScreenState<MovieDetail>(ScreenState.Status.SUCCESS,response.body(),null));
